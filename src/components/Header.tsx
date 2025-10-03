@@ -31,7 +31,7 @@ export default function Header({ cartCount, onCartClick }: HeaderProps) {
             </div>
             <div>
               <h1 className="text-2xl font-bold tracking-wider">Стильная штучка</h1>
-              <p className="text-xs text-muted-foreground">Автоаксессуары премиум</p>
+              <p className="text-xs text-muted-foreground">Стильные автоаксессуары </p>
             </div>
           </div>
 
