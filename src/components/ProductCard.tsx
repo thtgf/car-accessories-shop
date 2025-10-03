@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
@@ -20,12 +21,16 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, onAddToCart }: ProductCardProps) {
+  const navigate = useNavigate();
   const discount = product.oldPrice 
     ? Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100)
     : 0;
 
   return (
-    <div className="group relative bg-card rounded-lg overflow-hidden border border-border hover:shadow-xl transition-all duration-300">
+    <div 
+      className="group relative bg-card rounded-lg overflow-hidden border border-border hover:shadow-xl transition-all duration-300 cursor-pointer"
+      onClick={() => navigate(`/product/${product.id}`)}
+    >
       {discount > 0 && (
         <Badge className="absolute top-3 left-3 z-10 bg-primary text-primary-foreground">
           -{discount}%
@@ -80,7 +85,10 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
           </div>
 
           <Button
-            onClick={() => onAddToCart(product.id)}
+            onClick={(e) => {
+              e.stopPropagation();
+              onAddToCart(product.id);
+            }}
             size="icon"
             className="h-10 w-10 shrink-0"
             disabled={!product.inStock}
