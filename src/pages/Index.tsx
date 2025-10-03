@@ -155,9 +155,7 @@ export default function Index() {
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl">
-            <h1 className="text-5xl font-bold mb-4 tracking-tight">
-              Премиальные автоаксессуары
-            </h1>
+            <h1 className="text-5xl font-bold mb-4 tracking-tight"> Стильные автоаксессуары</h1>
             <p className="text-xl text-white/90 mb-8">
               Качественные аксессуары для вашего автомобиля. Быстрая доставка по всей России.
             </p>
