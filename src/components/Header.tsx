@@ -30,7 +30,7 @@ export default function Header({ cartCount, onCartClick }: HeaderProps) {
               <Icon name="Zap" className="text-primary-foreground" size={24} />
             </div>
             <div>
-              <h1 className="text-2xl font-bold tracking-wider">AVTO STORE</h1>
+              <h1 className="text-2xl font-bold tracking-wider">Стильная штучка</h1>
               <p className="text-xs text-muted-foreground">Автоаксессуары премиум</p>
             </div>
           </div>
