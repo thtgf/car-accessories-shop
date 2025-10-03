@@ -3,7 +3,6 @@ import Header from '@/components/Header';
 import ProductCard from '@/components/ProductCard';
 import Filters, { FilterState } from '@/components/Filters';
 import Cart from '@/components/Cart';
-import ComparePanel from '@/components/ComparePanel';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 
@@ -88,9 +87,7 @@ const PRODUCTS: Product[] = [
 
 export default function Index() {
   const [cartOpen, setCartOpen] = useState(false);
-  const [compareOpen, setCompareOpen] = useState(false);
   const [cartItems, setCartItems] = useState<any[]>([]);
-  const [compareItems, setCompareItems] = useState<number[]>([]);
   const [filters, setFilters] = useState<FilterState>({
     brands: [],
     categories: [],
@@ -130,27 +127,11 @@ export default function Index() {
     setCartItems(cartItems.filter(item => item.id !== productId));
   };
 
-  const handleToggleCompare = (productId: number) => {
-    if (compareItems.includes(productId)) {
-      setCompareItems(compareItems.filter(id => id !== productId));
-    } else {
-      setCompareItems([...compareItems, productId]);
-    }
-  };
-
-  const handleRemoveFromCompare = (productId: number) => {
-    setCompareItems(compareItems.filter(id => id !== productId));
-  };
-
-  const compareProducts = PRODUCTS.filter(p => compareItems.includes(p.id));
-
   return (
     <div className="min-h-screen bg-background">
       <Header
         cartCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)}
-        compareCount={compareItems.length}
         onCartClick={() => setCartOpen(true)}
-        onCompareClick={() => setCompareOpen(true)}
       />
 
       <div
@@ -216,8 +197,6 @@ export default function Index() {
                   key={product.id}
                   product={product}
                   onAddToCart={handleAddToCart}
-                  onCompare={handleToggleCompare}
-                  isComparing={compareItems.includes(product.id)}
                 />
               ))}
             </div>
@@ -231,13 +210,6 @@ export default function Index() {
         items={cartItems}
         onUpdateQuantity={handleUpdateQuantity}
         onRemove={handleRemoveFromCart}
-      />
-
-      <ComparePanel
-        isOpen={compareOpen}
-        onClose={() => setCompareOpen(false)}
-        items={compareProducts}
-        onRemove={handleRemoveFromCompare}
       />
     </div>
   );

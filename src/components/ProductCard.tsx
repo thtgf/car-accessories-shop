@@ -17,11 +17,9 @@ interface Product {
 interface ProductCardProps {
   product: Product;
   onAddToCart: (id: number) => void;
-  onCompare: (id: number) => void;
-  isComparing: boolean;
 }
 
-export default function ProductCard({ product, onAddToCart, onCompare, isComparing }: ProductCardProps) {
+export default function ProductCard({ product, onAddToCart }: ProductCardProps) {
   const discount = product.oldPrice 
     ? Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100)
     : 0;
@@ -33,21 +31,6 @@ export default function ProductCard({ product, onAddToCart, onCompare, isCompari
           -{discount}%
         </Badge>
       )}
-      
-      <div className="absolute top-3 right-3 z-10 flex flex-col gap-2">
-        <Button
-          variant="secondary"
-          size="icon"
-          className="h-9 w-9 bg-background/90 hover:bg-background"
-          onClick={() => onCompare(product.id)}
-        >
-          <Icon 
-            name="GitCompare" 
-            size={18} 
-            className={isComparing ? 'text-primary' : ''} 
-          />
-        </Button>
-      </div>
 
       <div className="aspect-square bg-muted/30 overflow-hidden">
         <img

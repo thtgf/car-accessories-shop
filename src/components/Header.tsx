@@ -6,12 +6,10 @@ import Icon from '@/components/ui/icon';
 
 interface HeaderProps {
   cartCount: number;
-  compareCount: number;
   onCartClick: () => void;
-  onCompareClick: () => void;
 }
 
-export default function Header({ cartCount, compareCount, onCartClick, onCompareClick }: HeaderProps) {
+export default function Header({ cartCount, onCartClick }: HeaderProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState('home');
 
@@ -54,19 +52,6 @@ export default function Header({ cartCount, compareCount, onCartClick, onCompare
           </div>
 
           <div className="flex items-center gap-3">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="relative"
-              onClick={onCompareClick}
-            >
-              <Icon name="GitCompare" size={22} />
-              {compareCount > 0 && (
-                <Badge className="absolute -top-1 -right-1 h-5 w-5 p-0 flex items-center justify-center text-xs">
-                  {compareCount}
-                </Badge>
-              )}
-            </Button>
             <Button
               variant="ghost"
               size="icon"
